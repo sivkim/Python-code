@@ -28,8 +28,9 @@ class Customer:
 class BasicCustomer(Customer):
     reward_rate = 1.0
 
-    def __init__(self, ID, name, reward):
+    def __init__(self, ID, name, reward, reward_rate=None):
         super().__init__(ID, name, reward)
+        self.reward_rate = reward_rate if reward_rate is not None else self.reward_rate
 
     def get_reward(self, total_cost):
         return round(self.reward_rate * total_cost)
@@ -47,10 +48,9 @@ class BasicCustomer(Customer):
 #create class VIPCustomer
 class VIPCustomer(BasicCustomer):
     discount_rate = 0.08
-    reward_rate = 1.0
 
-    def __init__(self, ID, name, reward, discount_rate=None):
-        super().__init__(ID, name, reward)
+    def __init__(self, ID, name, reward, reward_rate, discount_rate=None):
+        super().__init__(ID, name, reward, reward_rate)
         self.discount_rate = discount_rate if discount_rate is not None else self.discount_rate
 
     def get_discount(self, total_cost):
@@ -162,16 +162,17 @@ class Record:
                     cust_id = parts[0].strip()
                     name = parts[1].strip().lower()
                     try:
-                        reward = int(parts[2])  
-                        reward_rate = 1.0  
+                        reward_rate = int(parts[2])
                     except ValueError as e:
                         print(f"Error parsing reward in line {line_num}: {line.strip()} -> {e}")
                         continue
                     if cust_id.startswith('B'):
-                        customer = BasicCustomer(cust_id, name, reward)
+                        reward = int(parts[3])
+                        customer = BasicCustomer(cust_id, name, reward, reward_rate)
                     elif cust_id.startswith('V'):
-                        discount_rate = float(parts[4]) if len(parts) > 4 else 0.08
-                        customer = VIPCustomer(cust_id, name, reward, discount_rate)
+                        reward = int(parts[4])
+                        discount_rate = float(parts[3])
+                        customer = VIPCustomer(cust_id, name, reward, reward_rate, discount_rate)
                     else:
                         print(f"Invalid customer ID format in line {line_num}: {line.strip()}")
                         continue

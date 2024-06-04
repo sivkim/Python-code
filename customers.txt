@@ -1,8 +1,7 @@
-B1,james,20,1.0
-B2,lily,36,1.0
-V3,tom,12,1.0
-B5,harry,61,1.0
-V8,annie,45,1.0
-B10,sarah,32,1.0
-B11,wilson,26,1.0
-B12,rahul,196,1.0
+B1,James,1,20
+B2,Lily,1,36
+V3,Tom,1,0.08,12
+B5,Harry,1,61
+V8,Annie,1,0.1,45
+B10,Sarah,1,32
+B11,Wilson,1,26

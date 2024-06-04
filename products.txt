@@ -1,0 +1,10 @@
+P1,vitaminC,12.00,n
+P2,vitaminE,14.50,n
+P3,vitaminD,15.20,n
+P4,coldTablet,6.40,n
+P5,vaccine,32.60,y
+P6,fragrance,25.00,n
+P7,covidTablet,20.50,y
+B8,multivitamin,P1,P2,P3,33.36
+B9,tablet,P4,P7,21.52
+B10,beaty,P1,P2,P3,P6,53.36
